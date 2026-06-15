@@ -184,43 +184,62 @@
             box-shadow: 0 6px 24px rgba(16, 185, 129, 0.3);
         }
 
-        .hero-image-container {
+        .hero-graphic-container {
             flex: 0.8;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* Hero Headshot / Avatar Styling */
-        .hero-avatar-wrapper {
+        /* Premium Abstract Geometric Graphic (Replaces human photo) */
+        .abstract-graphic {
             position: relative;
-            width: 280px;
-            height: 280px;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
-        .hero-avatar-wrapper::before {
+        .abstract-graphic::before {
             content: '';
             position: absolute;
-            inset: -8px;
-            border: 2px solid var(--accent);
+            width: 160px;
+            height: 160px;
+            border: 2px dashed rgba(16, 185, 129, 0.3);
             border-radius: 50%;
-            opacity: 0.3;
-            animation: pulse 3s ease-in-out infinite;
+            animation: rotate-clockwise 25s linear infinite;
         }
 
-        .hero-avatar {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--bg-secondary);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            background-color: var(--bg-secondary);
+        .abstract-graphic::after {
+            content: '';
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            animation: rotate-counter 40s linear infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.3; }
-            50% { transform: scale(1.04); opacity: 0.6; }
+        .abstract-graphic i {
+            font-size: 4.5rem;
+            color: var(--accent);
+            filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.4));
+        }
+
+        @keyframes rotate-clockwise {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes rotate-counter {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(-360deg); }
         }
 
         /* --- SECTION COMPONENT STYLES --- */
@@ -287,13 +306,13 @@
         /* --- ACADEMICS SECTION --- */
         .academics-layout {
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 64px;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 48px;
         }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+        .stats-container {
+            display: flex;
+            flex-direction: column;
             gap: 20px;
         }
 
@@ -302,14 +321,32 @@
             border: 1px solid rgba(255, 255, 255, 0.03);
             border-radius: 12px;
             padding: 24px;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            background: rgba(16, 185, 129, 0.05);
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .stat-info {
+            text-align: left;
         }
 
         .stat-value {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: var(--accent);
-            margin-bottom: 4px;
+            line-height: 1.2;
         }
 
         .stat-label {
@@ -317,12 +354,13 @@
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            margin-top: 2px;
         }
 
-        /* Timeline / Education Styling */
+        /* Detailed Timeline / Education Styling */
         .timeline {
             border-left: 2px solid var(--bg-tertiary);
-            padding-left: 24px;
+            padding-left: 32px;
             position: relative;
         }
 
@@ -332,13 +370,13 @@
 
         .timeline-dot {
             position: absolute;
-            left: -33px;
+            left: -41px;
             top: 4px;
-            width: 14px;
-            height: 14px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
             background-color: var(--bg-primary);
-            border: 2px solid var(--accent);
+            border: 3px solid var(--accent);
         }
 
         .timeline-date {
@@ -347,18 +385,36 @@
             color: var(--accent);
             margin-bottom: 6px;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .timeline-title {
-            font-size: 1.25rem;
+            font-size: 1.4rem;
             font-weight: 600;
             margin-bottom: 4px;
+            color: var(--text-main);
         }
 
         .timeline-institution {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: var(--text-muted);
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .academic-details-block {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .details-group h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: var(--text-main);
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+            font-weight: 600;
         }
 
         .coursework-list {
@@ -370,13 +426,15 @@
         .coursework-list li {
             margin-bottom: 8px;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 10px;
+            line-height: 1.5;
         }
 
         .coursework-list i {
             color: var(--accent);
             font-size: 0.75rem;
+            margin-top: 6px;
         }
 
         /* --- HOBBIES & INTERESTS SECTION --- */
@@ -594,6 +652,17 @@
             display: flex;
             align-items: center;
             gap: 16px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .contact-method-link:hover .contact-icon-box {
+            background-color: var(--accent);
+            color: #000;
+        }
+
+        .contact-method-link:hover .contact-value {
+            color: var(--accent);
         }
 
         .contact-icon-box {
@@ -606,6 +675,7 @@
             align-items: center;
             color: var(--accent);
             font-size: 1.1rem;
+            transition: var(--transition-smooth);
         }
 
         .contact-label {
@@ -615,6 +685,7 @@
 
         .contact-value {
             font-weight: 500;
+            transition: var(--transition-smooth);
         }
 
         .contact-form {
@@ -717,7 +788,7 @@
         /* --- RESPONSIVE MEDIA QUERIES --- */
         @media (max-width: 968px) {
             .hero {
-                flex-direction: column-reverse;
+                flex-direction: column;
                 text-align: center;
                 justify-content: center;
                 padding-top: 120px;
@@ -734,9 +805,9 @@
                 gap: 48px;
             }
 
-            .hero-avatar-wrapper {
-                width: 220px;
-                height: 220px;
+            .abstract-graphic {
+                width: 240px;
+                height: 240px;
             }
         }
 
@@ -812,7 +883,7 @@
     </header>
 
     <main>
-        <!-- HERO SECTION -->
+        <!-- HERO SECTION (Premium Abstract Theme) -->
         <section id="hero" class="hero">
             <div class="hero-content">
                 <h1 class="hero-headline">Aspiring <span>Engineering & Physics</span> Student</h1>
@@ -821,10 +892,10 @@
                     View My Work <i class="fa-solid fa-arrow-right"></i>
                 </button>
             </div>
-            <!-- Reliable Professional Image Placeholder for Headshot -->
-            <div class="hero-image-container">
-                <div class="hero-avatar-wrapper">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80" alt="Tony's Professional Headshot" class="hero-avatar">
+            <!-- Dynamic abstract visual matrix (No face/human image) -->
+            <div class="hero-graphic-container">
+                <div class="abstract-graphic">
+                    <i class="fa-solid fa-atom"></i>
                 </div>
             </div>
         </section>
@@ -855,20 +926,26 @@
             </div>
         </section>
 
-        <!-- SECTION 2: ACADEMIC ACHIEVEMENTS -->
+        <!-- SECTION 2: ACADEMICS (Detailed Overview) -->
         <section id="academics">
             <h2 class="section-title"><span>02.</span> Academics</h2>
-            <p class="section-subtitle">Standardized testing indicators and structural institution logs</p>
+            <p class="section-subtitle">Standardized testing indicators, metrics, and curricular highlights</p>
             
             <div class="academics-layout">
-                <div class="stats-grid">
+                <div class="stats-container">
                     <div class="stat-card">
-                        <div class="stat-value">GPA 85+</div>
-                        <div class="stat-label">Academic Record</div>
+                        <div class="stat-icon"><i class="fa-solid fa-chart-line"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value">GPA 85+</div>
+                            <div class="stat-label">Academic Standing</div>
+                        </div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-value">7.5</div>
-                        <div class="stat-label">IELTS Band Score</div>
+                        <div class="stat-icon"><i class="fa-solid fa-language"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value">7.5</div>
+                            <div class="stat-label">IELTS Band Score</div>
+                        </div>
                     </div>
                 </div>
 
@@ -877,18 +954,31 @@
                         <div class="timeline-dot"></div>
                         <div class="timeline-date">2025 - Present</div>
                         <h3 class="timeline-title">NFLS BCA Academy</h3>
-                        <p class="timeline-institution">High School Track</p>
-                        <ul class="coursework-list">
-                            <li><i class="fa-solid fa-chevron-right"></i> Advanced Physics Principles</li>
-                            <li><i class="fa-solid fa-chevron-right"></i> Pre-Engineering Foundation Frameworks</li>
-                            <li><i class="fa-solid fa-chevron-right"></i> Analytical Mathematics and Logic Track</li>
-                        </ul>
+                        <p class="timeline-institution">High School Track Diploma Program</p>
+                        
+                        <div class="academic-details-block">
+                            <div class="details-group">
+                                <h4>Curriculum & Focus Areas</h4>
+                                <ul class="coursework-list">
+                                    <li><i class="fa-solid fa-chevron-right"></i> <strong>Advanced Physics Principles:</strong> Mechanics, thermal properties, kinematics, and foundational structural laws.</li>
+                                    <li><i class="fa-solid fa-chevron-right"></i> <strong>Pre-Engineering Track:</strong> Applied math systems, computational analysis, and algorithmic logic mapping.</li>
+                                    <li><i class="fa-solid fa-chevron-right"></i> <strong>Rigorous Quant Studies:</strong> Scientific modeling, laboratory data evaluation, and statistical deduction methodologies.</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="details-group">
+                                <h4>Academic Environment</h4>
+                                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5;">
+                                    Enrolled in a highly competitive global international platform, balancing standard rigorous quantitative courses alongside specialized research frameworks and peer scientific collaborations.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 3: HOBBIES & INTERESTS (With Context-Specific Images) -->
+        <!-- SECTION 3: HOBBIES & INTERESTS -->
         <section id="hobbies">
             <h2 class="section-title"><span>03.</span> Hobbies & Clubs</h2>
             <p class="section-subtitle">How I channel curiosity and teamwork beyond traditional studies</p>
@@ -933,7 +1023,7 @@
             </div>
         </section>
 
-        <!-- SECTION 4: PROJECTS (With Clean Unsplash Previews) -->
+        <!-- SECTION 4: PROJECTS -->
         <section id="projects">
             <h2 class="section-title"><span>04.</span> Projects</h2>
             <p class="section-subtitle">Selected works demonstrating creative digital systems</p>
@@ -1040,31 +1130,22 @@
                     <p>I am always looking forward to discussing scientific innovations, video editing collaborations, or advanced physics problems. Feel free to shoot me a message!</p>
                     
                     <div class="contact-methods">
-                        <div class="contact-method-item">
+                        <!-- Updated Custom Email -->
+                        <a href="mailto:Tony.Wang28@nflsbca.com" class="contact-method-item contact-method-link">
                             <div class="contact-icon-box"><i class="fa-solid fa-envelope"></i></div>
                             <div>
                                 <div class="contact-label">Email</div>
-                                <div class="contact-value">tony@example.com</div>
+                                <div class="contact-value">Tony.Wang28@nflsbca.com</div>
                             </div>
-                        </div>
-                        <div class="contact-method-item">
-                            <a href="https://github.com" target="_blank" class="contact-method-item">
-                                <div class="contact-icon-box"><i class="fa-brands fa-github"></i></div>
-                                <div>
-                                    <div class="contact-label">GitHub</div>
-                                    <div class="contact-value">github.com/tony-developer</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="contact-method-item">
-                            <a href="https://linkedin.com" target="_blank" class="contact-method-item">
-                                <div class="contact-icon-box"><i class="fa-brands fa-linkedin"></i></div>
-                                <div>
-                                    <div class="contact-label">LinkedIn</div>
-                                    <div class="contact-value">linkedin.com/in/tony-student</div>
-                                </div>
-                            </a>
-                        </div>
+                        </a>
+                        <!-- Updated Custom GitHub -->
+                        <a href="https://github.com/TWangNFLSBCA" target="_blank" class="contact-method-item contact-method-link">
+                            <div class="contact-icon-box"><i class="fa-brands fa-github"></i></div>
+                            <div>
+                                <div class="contact-label">GitHub</div>
+                                <div class="contact-value">github.com/TWangNFLSBCA</div>
+                            </div>
+                        </a>
                     </div>
                 </div>
 
