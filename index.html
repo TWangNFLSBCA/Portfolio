@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tony | Portfolio</title>
+    <!-- Google Fonts: Inter for clean, modern sans-serif typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for professional icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -137,7 +139,7 @@
         }
 
         .hero-content {
-            flex: 1;
+            flex: 1.2;
         }
 
         .hero-headline {
@@ -182,46 +184,43 @@
             box-shadow: 0 6px 24px rgba(16, 185, 129, 0.3);
         }
 
-        .hero-graphic-container {
-            flex: 1;
+        .hero-image-container {
+            flex: 0.8;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* Minimal abstract graphic mimicking clean modern architecture */
-        .abstract-graphic {
+        /* Hero Headshot / Avatar Styling */
+        .hero-avatar-wrapper {
             position: relative;
-            width: 320px;
-            height: 320px;
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
+            width: 280px;
+            height: 280px;
         }
 
-        .abstract-graphic::before {
+        .hero-avatar-wrapper::before {
             content: '';
             position: absolute;
-            width: 140px;
-            height: 140px;
-            border: 2px dashed rgba(16, 185, 129, 0.4);
+            inset: -8px;
+            border: 2px solid var(--accent);
             border-radius: 50%;
-            animation: rotate 20s linear infinite;
+            opacity: 0.3;
+            animation: pulse 3s ease-in-out infinite;
         }
 
-        .abstract-graphic i {
-            font-size: 4rem;
-            color: var(--accent);
-            filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.3));
+        .hero-avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--bg-secondary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            background-color: var(--bg-secondary);
         }
 
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.04); opacity: 0.6; }
         }
 
         /* --- SECTION COMPONENT STYLES --- */
@@ -245,40 +244,69 @@
             margin-bottom: 48px;
         }
 
-        /* --- ABOUT ME & ACADEMICS --- */
+        /* --- ABOUT ME & INTENDED MAJOR --- */
         .about-layout {
             display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 64px;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
         }
 
         .bio-text {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             color: var(--text-muted);
-            margin-bottom: 24px;
+            margin-bottom: 32px;
         }
 
         .bio-text strong {
             color: var(--text-main);
         }
 
+        .major-box {
+            background-color: var(--bg-secondary);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 12px 12px 0;
+            padding: 24px;
+        }
+
+        .major-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .major-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        /* --- ACADEMICS SECTION --- */
+        .academics-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 64px;
+        }
+
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
-            margin-top: 32px;
         }
 
         .stat-card {
             background-color: var(--bg-secondary);
             border: 1px solid rgba(255, 255, 255, 0.03);
             border-radius: 12px;
-            padding: 20px;
+            padding: 24px;
             text-align: center;
         }
 
         .stat-value {
-            font-size: 1.75rem;
+            font-size: 2rem;
             font-weight: 700;
             color: var(--accent);
             margin-bottom: 4px;
@@ -300,11 +328,6 @@
 
         .timeline-item {
             position: relative;
-            margin-bottom: 32px;
-        }
-
-        .timeline-item:last-child {
-            margin-bottom: 0;
         }
 
         .timeline-dot {
@@ -327,7 +350,7 @@
         }
 
         .timeline-title {
-            font-size: 1.15rem;
+            font-size: 1.25rem;
             font-weight: 600;
             margin-bottom: 4px;
         }
@@ -335,25 +358,78 @@
         .timeline-institution {
             font-size: 0.95rem;
             color: var(--text-muted);
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
 
         .coursework-list {
             list-style: none;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text-muted);
         }
 
         .coursework-list li {
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .coursework-list i {
             color: var(--accent);
             font-size: 0.75rem;
+        }
+
+        /* --- HOBBIES & INTERESTS SECTION --- */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .hobby-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 28px;
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(16, 185, 129, 0.15);
+        }
+
+        .hobby-image {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            background-color: var(--bg-tertiary);
+        }
+
+        .hobby-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .hobby-icon {
+            font-size: 1.25rem;
+            color: var(--accent);
+        }
+
+        .hobby-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+
+        .hobby-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
         }
 
         /* --- PROJECTS SECTION --- */
@@ -379,21 +455,16 @@
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
         }
 
-        .project-image-placeholder {
-            height: 180px;
-            background-color: var(--bg-tertiary);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--text-muted);
-            font-size: 2.5rem;
+        .project-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
             transition: var(--transition-smooth);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            background-color: var(--bg-tertiary);
         }
 
-        .project-card:hover .project-image-placeholder {
-            color: var(--accent);
-            background-color: rgba(16, 185, 129, 0.03);
+        .project-card:hover .project-image {
+            transform: scale(1.03);
         }
 
         .project-info {
@@ -646,7 +717,7 @@
         /* --- RESPONSIVE MEDIA QUERIES --- */
         @media (max-width: 968px) {
             .hero {
-                flex-direction: column;
+                flex-direction: column-reverse;
                 text-align: center;
                 justify-content: center;
                 padding-top: 120px;
@@ -658,14 +729,14 @@
                 margin-right: auto;
             }
 
-            .about-layout, .contact-layout {
+            .about-layout, .academics-layout, .contact-layout {
                 grid-template-columns: 1fr;
                 gap: 48px;
             }
 
-            .abstract-graphic {
-                width: 260px;
-                height: 260px;
+            .hero-avatar-wrapper {
+                width: 220px;
+                height: 220px;
             }
         }
 
@@ -690,7 +761,7 @@
             }
 
             .nav-links.active {
-                max-height: 300px;
+                max-height: 380px;
             }
 
             .nav-links li {
@@ -720,6 +791,7 @@
 </head>
 <body>
 
+    <!-- STICKY HEADER / NAVIGATION -->
     <header>
         <div class="nav-container">
             <a href="#hero" class="logo">TONY<span>.</span></a>
@@ -730,6 +802,8 @@
             </button>
             <ul class="nav-links">
                 <li><a href="#about" class="nav-item">About</a></li>
+                <li><a href="#academics" class="nav-item">Academics</a></li>
+                <li><a href="#hobbies" class="nav-item">Hobbies</a></li>
                 <li><a href="#projects" class="nav-item">Projects</a></li>
                 <li><a href="#skills" class="nav-item">Skills</a></li>
                 <li><a href="#contact" class="nav-item">Contact</a></li>
@@ -738,101 +812,154 @@
     </header>
 
     <main>
+        <!-- HERO SECTION -->
         <section id="hero" class="hero">
             <div class="hero-content">
                 <h1 class="hero-headline">Aspiring <span>Engineering & Physics</span> Student</h1>
                 <p class="hero-tagline">Deeply passionate about applying rigorous scientific insights to create powerful software solutions and modern media formats.</p>
                 <button class="cta-btn" onclick="document.getElementById('projects').scrollIntoView();">
-                    View My Work <i class="fa-solid => fa-arrow-right"></i>
+                    View My Work <i class="fa-solid fa-arrow-right"></i>
                 </button>
             </div>
-            <div class="hero-graphic-container">
-                <div class="abstract-graphic">
-                    <i class="fa-solid fa-atom"></i>
+            <!-- Reliable Professional Image Placeholder for Headshot -->
+            <div class="hero-image-container">
+                <div class="hero-avatar-wrapper">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80" alt="Tony's Professional Headshot" class="hero-avatar">
                 </div>
             </div>
         </section>
 
+        <!-- SECTION 1: ABOUT ME -->
         <section id="about">
-            <h2 class="section-title"><span>01.</span> About Me</h2>
-            <p class="section-subtitle">My academic trajectory, passions, and background</p>
+            <h2 class="section-title"><span>01.</span> Profile Overview</h2>
+            <p class="section-subtitle">A snapshot of who I am and my core academic direction</p>
             
             <div class="about-layout">
                 <div>
                     <p class="bio-text">
-                        I am exceptionally driven by <strong>science and technology</strong>. Beyond classical learning environments, I love tracking computational innovations, following modern high-performance engineering concepts like <strong>Formula 1</strong> (proud supporter of George Russell), and testing quick-reflex dynamic systems via video games as a master-tier <strong>Valorant</strong> strategist.
+                        I am <strong>A student in NFLS BCA academy since 2025</strong>. I am highly fascinated by technological integration and driven to discover how basic laws of nature scale up into high-performance technical ecosystems.
                     </p>
                     <p class="bio-text">
-                        My skill sets blend highly analytical STEM structures alongside expressive, design-oriented activities through leadership in numerous creative frameworks.
+                        Through structural exploration inside and outside of school environments, I aim to continuously prepare myself for demanding research fields in the global engineering spectrum.
                     </p>
-                    
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-value">GPA 85+</div>
-                            <div class="stat-label">Academic Standing</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value">7.5</div>
-                            <div class="stat-label">IELTS Band Score</div>
-                        </div>
+                </div>
+
+                <!-- Intended Major Dashboard Callout -->
+                <div class="major-box">
+                    <div class="major-title">Intended Major</div>
+                    <div class="major-value">Engineering & Physics</div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 12px; line-height: 1.5;">
+                        Targeting intersectional fields handling quantitative computational modeling, mechanical optimization, and practical applied physics structures.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: ACADEMIC ACHIEVEMENTS -->
+        <section id="academics">
+            <h2 class="section-title"><span>02.</span> Academics</h2>
+            <p class="section-subtitle">Standardized testing indicators and structural institution logs</p>
+            
+            <div class="academics-layout">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">GPA 85+</div>
+                        <div class="stat-label">Academic Record</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">7.5</div>
+                        <div class="stat-label">IELTS Band Score</div>
                     </div>
                 </div>
 
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
-                        <div class="timeline-date">2024 - Present</div>
-                        <h3 class="timeline-title">Grade 10 Student</h3>
-                        <p class="timeline-institution">High School Curriculum</p>
+                        <div class="timeline-date">2025 - Present</div>
+                        <h3 class="timeline-title">NFLS BCA Academy</h3>
+                        <p class="timeline-institution">High School Track</p>
                         <ul class="coursework-list">
-                            <li><i class="fa-solid fa-circle"></i> Focus: Advanced Physics & Pre-Engineering</li>
-                            <li><i class="fa-solid fa-circle"></i> Core: Mathematics & Applied Scientific Analytics</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">Extracurricular Engagements</div>
-                        <h3 class="timeline-title">Clubs & Societies</h3>
-                        <p class="timeline-institution">Active Leadership & Collaboration</p>
-                        <ul class="coursework-list">
-                            <li><i class="fa-solid fa-circle"></i> Biology & Drama Clubs</li>
-                            <li><i class="fa-solid fa-circle"></i> Badminton & Sports Analytics</li>
-                            <li><i class="fa-solid fa-circle"></i> Movie & Media Club Coordinator</li>
+                            <li><i class="fa-solid fa-chevron-right"></i> Advanced Physics Principles</li>
+                            <li><i class="fa-solid fa-chevron-right"></i> Pre-Engineering Foundation Frameworks</li>
+                            <li><i class="fa-solid fa-chevron-right"></i> Analytical Mathematics and Logic Track</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- SECTION 3: HOBBIES & INTERESTS (With Context-Specific Images) -->
+        <section id="hobbies">
+            <h2 class="section-title"><span>03.</span> Hobbies & Clubs</h2>
+            <p class="section-subtitle">How I channel curiosity and teamwork beyond traditional studies</p>
+            
+            <div class="hobbies-grid">
+                <!-- Hobby 1: F1 -->
+                <div class="hobby-card">
+                    <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=400&q=80" alt="Formula One Racing Car" class="hobby-image">
+                    <div class="hobby-header">
+                        <div class="hobby-icon"><i class="fa-solid fa-flag-checkered"></i></div>
+                        <h3 class="hobby-title">Formula 1</h3>
+                    </div>
+                    <p class="hobby-desc">An avid spectator of aerodynamic limits and split-second engineering logic. My favorite driver is <strong>George Russell</strong>.</p>
+                </div>
+                <!-- Hobby 2: Gaming -->
+                <div class="hobby-card">
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=400&q=80" alt="Esports Gaming Setup" class="hobby-image">
+                    <div class="hobby-header">
+                        <div class="hobby-icon"><i class="fa-solid fa-gamepad"></i></div>
+                        <h3 class="hobby-title">Competitive Gaming</h3>
+                    </div>
+                    <p class="hobby-desc">Deeply analytical tactical framework testing. Accomplished master-tier ranking strategist in <strong>Valorant</strong>.</p>
+                </div>
+                <!-- Hobby 3: Clubs -->
+                <div class="hobby-card">
+                    <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=400&q=80" alt="School Collaboration Event" class="hobby-image">
+                    <div class="hobby-header">
+                        <div class="hobby-icon"><i class="fa-solid fa-masks-theater"></i></div>
+                        <h3 class="hobby-title">Creative Clubs</h3>
+                    </div>
+                    <p class="hobby-desc">Active contributor across multiple fields: <strong>Biology Club</strong>, <strong>Drama Club</strong>, and the <strong>Movie & Media Club</strong>.</p>
+                </div>
+                <!-- Hobby 4: Badminton -->
+                <div class="hobby-card">
+                    <img src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&w=400&q=80" alt="Badminton Racket and Shuttlecock" class="hobby-image">
+                    <div class="hobby-header">
+                        <div class="hobby-icon"><i class="fa-solid fa-shuttlecock"></i></div>
+                        <h3 class="hobby-title">Badminton</h3>
+                    </div>
+                    <p class="hobby-desc">Refining high-speed reflexes, physics calculation on court, and physical endurance through structural matches.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: PROJECTS (With Clean Unsplash Previews) -->
         <section id="projects">
-            <h2 class="section-title"><span>02.</span> Projects</h2>
+            <h2 class="section-title"><span>04.</span> Projects</h2>
             <p class="section-subtitle">Selected works demonstrating creative digital systems</p>
             
             <div class="projects-grid">
+                <!-- Project 1 -->
                 <article class="project-card">
-                    <div class="project-image-placeholder">
-                        <i class="fa-solid fa-video"></i>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=600&q=80" alt="Filmmaking Camera Production" class="project-image">
                     <div class="project-info">
                         <h3 class="project-title">School Media Production Portfolio</h3>
-                        <p class="project-desc">Produced structural high-definition movies and archival cinematic trailers representing the student body across official internal assemblies and outreach frameworks.</p>
+                        <p class="project-desc">Produced structural high-definition movies and archival cinematic trailers representing the student body across official internal assemblies.</p>
                         <div class="tag-container">
                             <span class="tag">Cinematography</span>
                             <span class="tag">Premiere Pro</span>
-                            <span class="tag">Media Management</span>
+                            <span class="tag">Media Club</span>
                         </div>
                         <a href="#" class="project-link">View Media Assets <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </div>
                 </article>
 
+                <!-- Project 2 -->
                 <article class="project-card">
-                    <div class="project-image-placeholder">
-                        <i class="fa-solid fa-camera"></i>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Landscape Photography Exhibition" class="project-image">
                     <div class="project-info">
                         <h3 class="project-title">Creative Exhibition Photography</h3>
-                        <p class="project-desc">Curated a bespoke timeline collection of environmental landscape design and human-interest captures deployed for public community review boards.</p>
+                        <p class="project-desc">Curated a modern portfolio of event capture and documentary framing deployed across local creative spaces and external networks.</p>
                         <div class="tag-container">
                             <span class="tag">Photography</span>
                             <span class="tag">Lightroom</span>
@@ -842,13 +969,12 @@
                     </div>
                 </article>
 
+                <!-- Project 3 -->
                 <article class="project-card">
-                    <div class="project-image-placeholder">
-                        <i class="fa-solid fa-gears"></i>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=600&q=80" alt="Physics Simulation Visual Matrix" class="project-image">
                     <div class="project-info">
                         <h3 class="project-title">Aerodynamics & Physics Simulator</h3>
-                        <p class="project-desc">A conceptual browser application analyzing kinematic properties and track-friction metrics inspired heavily by F1 engineering variables.</p>
+                        <p class="project-desc">A conceptual browser application analyzing kinematic properties and track-friction metrics inspired by F1 engineering concepts.</p>
                         <div class="tag-container">
                             <span class="tag">HTML5 Canvas</span>
                             <span class="tag">JavaScript</span>
@@ -860,8 +986,9 @@
             </div>
         </section>
 
+        <!-- SECTION 5: SKILLS -->
         <section id="skills">
-            <h2 class="section-title"><span>03.</span> Core Skills</h2>
+            <h2 class="section-title"><span>05.</span> Core Skills</h2>
             <p class="section-subtitle">Categorized competencies and technical skill sets</p>
             
             <div class="skills-container">
@@ -903,13 +1030,14 @@
             </div>
         </section>
 
+        <!-- SECTION 6: CONTACT -->
         <section id="contact">
-            <h2 class="section-title"><span>04.</span> Connect With Me</h2>
+            <h2 class="section-title"><span>06.</span> Connect With Me</h2>
             <p class="section-subtitle">Get in touch for future university projects or collaborations</p>
             
             <div class="contact-layout">
                 <div class="contact-info">
-                    <p>I am always looking forward to discussing scientific innovations, video editing collaborations, or advanced physics problems. Feel free to shoot me a direct message!</p>
+                    <p>I am always looking forward to discussing scientific innovations, video editing collaborations, or advanced physics problems. Feel free to shoot me a message!</p>
                     
                     <div class="contact-methods">
                         <div class="contact-method-item">
@@ -961,6 +1089,7 @@
         </section>
     </main>
 
+    <!-- FOOTER -->
     <footer>
         <div class="footer-container">
             <p>&copy; 2026 Tony. Built with premium design frameworks.</p>
@@ -970,6 +1099,7 @@
         </div>
     </footer>
 
+    <!-- INTERACTIVE JAVASCRIPT -->
     <script>
         // --- MOBILE NAV MENU TOGGLE ---
         const menuToggle = document.querySelector('.menu-toggle');
@@ -981,7 +1111,6 @@
             navLinks.classList.toggle('active');
         });
 
-        // Close mobile navbar automatically when a link is clicked
         navItems.forEach(item => {
             item.addEventListener('click', () => {
                 menuToggle.classList.remove('active');
@@ -997,7 +1126,6 @@
             
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                // Subtract offsets to manage header height calculations correctly
                 if (window.scrollY >= (sectionTop - 160)) {
                     currentSectionId = section.getAttribute('id');
                 }
@@ -1013,14 +1141,9 @@
 
         // --- CONTACT FORM ACCESSIBILITY HANDLER ---
         document.getElementById('portfolioContactForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Stop page from refreshing
-            
+            event.preventDefault();
             const clientName = document.getElementById('name').value;
-            
-            // Pop up feedback for interactive UX validation
-            alert(`Thank you, ${clientName}! Your mock message has been successfully logged. For a real portfolio, attach a backend API hook like Formspree or EmailJS here.`);
-            
-            // Clear inputs safely
+            alert(`Thank you, ${clientName}! Your mock message has been successfully logged.`);
             this.reset();
         });
     </script>
